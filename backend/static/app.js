@@ -96,29 +96,7 @@ function buildChart(canvasId, type, data, options = {}) {
 
   const legendPosition = type === "doughnut" ? "right" : "bottom";
   const legendOptions = {
-    display: true,
-    position: legendPosition,
-    align: "start",
-    labels: {
-      color: "#475569",
-      boxWidth: 18,
-      boxHeight: 18,
-      padding: 18,
-      font: { size: 14, family: "Inter, ui-sans-serif, system-ui" },
-      usePointStyle: true,
-      pointStyle: "rectRounded",
-      textAlign: "left",
-    },
-    onClick: function (evt, item, legend) {
-      if (evt && evt.native && typeof evt.native.preventDefault === "function") {
-        evt.native.preventDefault();
-      }
-    },
-    onHover: function (evt) {
-      if (evt && evt.native && evt.native.target) {
-        evt.native.target.style.cursor = "default";
-      }
-    },
+    display: false
   };
 
   charts[canvasId] = new Chart(ctx, {
@@ -166,6 +144,24 @@ function buildChart(canvasId, type, data, options = {}) {
       ...options,
     },
   });
+
+  // render a simple non-interactive HTML legend under the chart to avoid canvas legend overlays
+  try {
+    const legendContainer = document.getElementById(`${canvasId}-legend`);
+    if (legendContainer) {
+      legendContainer.innerHTML = "";
+      data.labels.forEach((lab, idx) => {
+        const color = charts[canvasId].data.datasets[0].backgroundColor[idx % charts[canvasId].data.datasets[0].backgroundColor.length];
+        const item = document.createElement("div");
+        item.className = "legend-item";
+        item.innerHTML = `<span class='legend-swatch' style='background:${color}'></span><span class='legend-label'>${lab}</span>`;
+        legendContainer.appendChild(item);
+      });
+    }
+  } catch (e) {
+    // ignore legend render errors
+    console.warn("Legend render error", e);
+  }
 }
 
 function updateDashboard(dataset) {
