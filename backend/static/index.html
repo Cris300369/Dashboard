@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Hardware</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Dashboard de Hardware</h1>
+        <p>Visión general del inventario y características de equipos</p>
+      </div>
+
+      <section class="panel panel-filters">
+        <h2>Filtros</h2>
+        <form id="filtersForm">
+          <label>
+            Sistema Operativo
+            <select id="filterOs"></select>
+          </label>
+          <label>
+            Fabricante
+            <select id="filterFab"></select>
+          </label>
+          <label>
+            Categoría
+            <select id="filterCat"></select>
+          </label>
+          <label>
+            Pantalla
+            <select id="filterPan"></select>
+          </label>
+          <label>
+            CPU
+            <select id="filterCpu"></select>
+          </label>
+          <label>
+            RAM
+            <select id="filterRam"></select>
+          </label>
+          <label>
+            Almacenamiento
+            <select id="filterAlm"></select>
+          </label>
+
+          <div class="actions">
+            <button type="button" id="applyFilters">Aplicar filtros</button>
+            <button type="button" id="clearFilters" class="secondary">Limpiar filtros</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel panel-info">
+        <div class="info-card">
+          <span>Total</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div class="info-card">
+          <span>Equipos únicos</span>
+          <strong id="uniqueModels">0</strong>
+        </div>
+      </section>
+    </aside>
+
+    <main class="dashboard-content">
+      <section class="charts-grid">
+        <article class="chart-card small-card">
+          <div class="card-title">Equipos por fabricante</div>
+          <canvas id="chartFabricantes"></canvas>
+        </article>
+        <article class="chart-card small-card">
+          <div class="card-title">Equipos por categoría</div>
+          <canvas id="chartCategorias"></canvas>
+        </article>
+        <article class="chart-card small-card">
+          <div class="card-title">Equipos por sistema operativo</div>
+          <canvas id="chartOs"></canvas>
+        </article>
+        <article class="chart-card">
+          <div class="card-title">Distribución de CPU por fabricante</div>
+          <canvas id="chartCpu"></canvas>
+        </article>
+        <article class="chart-card">
+          <div class="card-title">Distribución de GPU por fabricante</div>
+          <canvas id="chartGpu"></canvas>
+        </article>
+        <article class="chart-card">
+          <div class="card-title">Distribución de RAM (capacidad)</div>
+          <canvas id="chartRam"></canvas>
+        </article>
+      </section>
+
+      <section class="table-section">
+        <div class="table-card">
+          <div class="card-title">Top 5 de equipos más caros</div>
+          <div class="table-wrapper">
+            <table id="top5Table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Fabricante</th>
+                  <th>Categoría</th>
+                  <th>CPU</th>
+                  <th>GPU</th>
+                  <th>RAM</th>
+                  <th>Precio (€)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="card-title">Combinaciones más comunes (CPU + GPU)</div>
+          <div class="table-wrapper">
+            <table id="combosTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>CPU</th>
+                  <th>GPU</th>
+                  <th>Equipos</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
