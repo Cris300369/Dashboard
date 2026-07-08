@@ -79,6 +79,8 @@ input {
   border-radius: 14px;
   padding: 12px;
   box-shadow: var(--shadow);
+  position: relative;
+  z-index: 60;
 }
 
 .panel h2 {
@@ -104,6 +106,8 @@ input {
   color: var(--text);
   min-height: 52px;
   touch-action: manipulation;
+  position: relative;
+  z-index: 70;
 }
 
 .filters-form {
@@ -111,6 +115,8 @@ input {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 14px;
   align-items: end;
+  position: relative;
+  z-index: 65;
 }
 
 .filters-form label {
@@ -208,6 +214,8 @@ button.secondary {
   max-height: 420px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
 }
 
 .chart-card canvas {
@@ -216,6 +224,8 @@ button.secondary {
   display: block;
   flex: 1;
   min-height: 260px;
+  position: relative;
+  z-index: 10;
 }
 
 .small-card {
