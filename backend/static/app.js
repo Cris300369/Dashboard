@@ -152,23 +152,7 @@ function buildChart(canvasId, type, data, options = {}) {
     },
   });
 
-  // render a simple non-interactive HTML legend under the chart to avoid canvas legend overlays
-  try {
-    const legendContainer = document.getElementById(`${canvasId}-legend`);
-    if (legendContainer) {
-      legendContainer.innerHTML = "";
-      data.labels.forEach((lab, idx) => {
-        const color = charts[canvasId].data.datasets[0].backgroundColor[idx % charts[canvasId].data.datasets[0].backgroundColor.length];
-        const item = document.createElement("div");
-        item.className = "legend-item";
-        item.innerHTML = `<span class='legend-swatch' style='background:${color}'></span><span class='legend-label'>${lab}</span>`;
-        legendContainer.appendChild(item);
-      });
-    }
-  } catch (e) {
-    // ignore legend render errors
-    console.warn("Legend render error", e);
-  }
+  // no static legend rendered (removed to avoid overflow)
 }
 
 function updateDashboard(dataset) {
