@@ -21,11 +21,18 @@ body {
   background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
   color: var(--text);
   font-size: 14px;
+  overflow-x: hidden;
 }
 
 button,
 select {
   font: inherit;
+}
+
+select,
+button,
+input {
+  font-size: 16px;
 }
 
 .app-shell {
@@ -246,6 +253,20 @@ tbody tr:hover {
 
   .charts-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .sidebar-header,
+  .panel,
+  .chart-card,
+  .table-card {
+    border-radius: 12px;
   }
 }
 
