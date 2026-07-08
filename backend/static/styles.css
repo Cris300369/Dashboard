@@ -115,6 +115,10 @@ input {
   margin-bottom: 0;
 }
 
+.filters-form select {
+  min-width: 0;
+}
+
 .actions {
   display: flex;
   gap: 10px;
@@ -125,11 +129,12 @@ input {
 
 button {
   border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 12px;
+  padding: 10px 14px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-size: 0.84rem;
+  font-size: 0.92rem;
+  min-height: 42px;
 }
 
 button:hover {
@@ -189,10 +194,10 @@ button.secondary {
   background: var(--surface);
   border-radius: 14px;
   border: 1px solid var(--border);
-  padding: 14px;
+  padding: 18px;
   box-shadow: var(--shadow);
-  min-height: 300px;
-  max-height: 360px;
+  min-height: 320px;
+  max-height: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -243,6 +248,12 @@ table {
   min-width: 700px;
 }
 
+@media (max-width: 700px) {
+  table {
+    min-width: 100%;
+  }
+}
+
 th,
 td {
   padding: 8px 8px;
@@ -286,6 +297,16 @@ tbody tr:hover {
   .chart-card,
   .table-card {
     border-radius: 12px;
+  }
+
+  .filters-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters-form label {
+    flex: 1 1 100%;
+    min-width: 0;
   }
 }
 

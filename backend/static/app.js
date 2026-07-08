@@ -100,11 +100,13 @@ function buildChart(canvasId, type, data, options = {}) {
     position: legendPosition,
     labels: {
       color: "#475569",
-      boxWidth: 12,
-      boxHeight: 12,
-      padding: 10,
-      font: { size: 11 },
+      boxWidth: 16,
+      boxHeight: 16,
+      padding: 14,
+      font: { size: 12 },
+      usePointStyle: true,
     },
+    onClick: null,
   };
 
   charts[canvasId] = new Chart(ctx, {
