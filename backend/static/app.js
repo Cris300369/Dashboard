@@ -98,15 +98,27 @@ function buildChart(canvasId, type, data, options = {}) {
   const legendOptions = {
     display: true,
     position: legendPosition,
+    align: "start",
     labels: {
       color: "#475569",
-      boxWidth: 16,
-      boxHeight: 16,
-      padding: 14,
-      font: { size: 12 },
+      boxWidth: 18,
+      boxHeight: 18,
+      padding: 18,
+      font: { size: 14, family: "Inter, ui-sans-serif, system-ui" },
       usePointStyle: true,
+      pointStyle: "rectRounded",
+      textAlign: "left",
     },
-    onClick: null,
+    onClick: function (evt, item, legend) {
+      if (evt && evt.native && typeof evt.native.preventDefault === "function") {
+        evt.native.preventDefault();
+      }
+    },
+    onHover: function (evt) {
+      if (evt && evt.native && evt.native.target) {
+        evt.native.target.style.cursor = "default";
+      }
+    },
   };
 
   charts[canvasId] = new Chart(ctx, {
