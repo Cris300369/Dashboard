@@ -99,6 +99,13 @@ function buildChart(canvasId, type, data, options = {}) {
     display: false
   };
 
+  // sensible defaults to avoid overflowing the card
+  if (!options.layout) options.layout = { padding: 12 };
+  // make doughnut charts less wide (bigger hole) so they fit better in compact cards
+  if (type === "doughnut") {
+    if (!options.cutout) options.cutout = "60%";
+  }
+
   charts[canvasId] = new Chart(ctx, {
     type,
     data: {
