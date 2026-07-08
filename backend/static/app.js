@@ -55,11 +55,36 @@ function buildBucket(dataset, key) {
   }, {});
 }
 
-function getChartData(dataset, key) {
+function getChartData(dataset, key, groupThreshold = null) {
   const bucket = buildBucket(dataset, key);
+  const entries = Object.entries(bucket);
+
+  if (!groupThreshold || entries.length <= 0) {
+    return {
+      labels: entries.map(([label]) => label),
+      values: entries.map(([, value]) => value),
+    };
+  }
+
+  const grouped = [];
+  const others = [];
+
+  entries.forEach(([label, value]) => {
+    if (value <= groupThreshold) {
+      others.push([label, value]);
+    } else {
+      grouped.push([label, value]);
+    }
+  });
+
+  const totalOthers = others.reduce((sum, [, value]) => sum + value, 0);
+  if (totalOthers > 0) {
+    grouped.push(["Otros", totalOthers]);
+  }
+
   return {
-    labels: Object.keys(bucket),
-    values: Object.values(bucket),
+    labels: grouped.map(([label]) => label),
+    values: grouped.map(([, value]) => value),
   };
 }
 
@@ -68,6 +93,20 @@ function buildChart(canvasId, type, data, options = {}) {
   if (charts[canvasId]) {
     charts[canvasId].destroy();
   }
+
+  const legendPosition = type === "doughnut" ? "right" : "bottom";
+  const legendOptions = {
+    display: true,
+    position: legendPosition,
+    labels: {
+      color: "#475569",
+      boxWidth: 12,
+      boxHeight: 12,
+      padding: 10,
+      font: { size: 11 },
+    },
+  };
+
   charts[canvasId] = new Chart(ctx, {
     type,
     data: {
@@ -95,13 +134,7 @@ function buildChart(canvasId, type, data, options = {}) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: {
-          position: type === "doughnut" ? "right" : "top",
-          labels: {
-            boxWidth: 12,
-            padding: 16,
-          },
-        },
+        legend: legendOptions,
       },
       scales: {
         y: {
@@ -125,7 +158,7 @@ function updateDashboard(dataset) {
   totalCountEl.textContent = dataset.length.toLocaleString();
   uniqueModelsEl.textContent = unique(dataset.map((row) => row.NOT_Desc)).length.toLocaleString();
 
-  const fabricante = getChartData(dataset, "FAB_Desc");
+  const fabricante = getChartData(dataset, "FAB_Desc", 70);
   const categoria = getChartData(dataset, "CAT_Desc");
   const sistema = getChartData(dataset, "SIO_Desc");
   const cpu = getChartData(dataset, "CPU_Fabric");
