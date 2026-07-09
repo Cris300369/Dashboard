@@ -9,23 +9,23 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
-      <section class="panel panel-info">
-        <div class="info-card">
-          <span>Total</span>
-          <strong id="totalCount">0</strong>
-        </div>
-        <div class="info-card">
-          <span>Equipos únicos</span>
-          <strong id="uniqueModels">0</strong>
-        </div>
-      </section>
-    </aside>
+    <aside class="sidebar"></aside>
 
     <main class="dashboard-content">
       <section class="panel panel-filters">
         <h2>Filtros</h2>
         <form id="filtersForm" class="filters-form">
+          <div class="filters-summary">
+            <div class="info-card compact-card">
+              <span>Total</span>
+              <strong id="totalCount">0</strong>
+            </div>
+            <div class="info-card compact-card">
+              <span>Equipos únicos</span>
+              <strong id="uniqueModels">0</strong>
+            </div>
+          </div>
+
           <label>
             Sistema Operativo
             <select id="filterOs"></select>

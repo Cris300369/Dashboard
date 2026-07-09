@@ -39,10 +39,11 @@ input {
 
 .app-shell {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: 12px;
-  padding: 12px;
-  max-width: 1400px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px;
+  max-width: 1600px;
+  width: min(100%, 1600px);
   margin: 0 auto;
 }
 
@@ -76,8 +77,8 @@ input {
 .panel {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 14px 16px;
   box-shadow: var(--shadow);
   position: relative;
   z-index: 60;
@@ -165,10 +166,11 @@ button.secondary {
   border: 1px solid var(--border);
 }
 
-.panel-info {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.filters-summary {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .info-card {
@@ -177,6 +179,11 @@ button.secondary {
   padding: 10px 12px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+}
+
+.compact-card {
+  flex: 1 1 140px;
+  min-width: 140px;
 }
 
 .info-card span {
@@ -193,8 +200,9 @@ button.secondary {
 .dashboard-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   min-width: 0;
+  width: 100%;
 }
 
 .charts-grid {
@@ -205,12 +213,12 @@ button.secondary {
 
 .chart-card {
   background: var(--surface);
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   padding: 18px;
   box-shadow: var(--shadow);
-  min-height: 340px;
-  max-height: 420px;
+  min-height: 360px;
+  max-height: 440px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -230,7 +238,7 @@ button.secondary {
 }
 
 .small-card {
-  min-height: 300px;
+  min-height: 320px;
 }
 
 .card-title {
@@ -253,9 +261,9 @@ button.secondary {
 
 .table-card {
   background: var(--surface);
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid var(--border);
-  padding: 12px;
+  padding: 14px 16px;
   box-shadow: var(--shadow);
 }
 
@@ -323,6 +331,10 @@ tbody tr:hover {
   .filters-form {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .filters-summary {
+    width: 100%;
   }
 
   .filters-form label {
