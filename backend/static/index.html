@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard de Hardware</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -15,49 +15,62 @@
       <section class="panel panel-filters">
         <h2>Filtros</h2>
         <form id="filtersForm" class="filters-form">
-          <div class="filters-summary">
+          <!-- Columna Izquierda -->
+          <div class="filter-col">
             <div class="info-card compact-card">
               <span>Total</span>
               <strong id="totalCount">0</strong>
             </div>
+            
+            <div class="filters-group">
+              <label>
+                Sistema Operativo
+                <select id="filterOs"></select>
+              </label>
+              <label>
+                Fabricante
+                <select id="filterFab"></select>
+              </label>
+              <label>
+                Categoría
+                <select id="filterCat"></select>
+              </label>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="filter-col">
             <div class="info-card compact-card">
               <span>Equipos únicos</span>
               <strong id="uniqueModels">0</strong>
             </div>
+
+            <div class="filters-group">
+              <label>
+                Pantalla
+                <select id="filterPan"></select>
+              </label>
+              <label>
+                CPU
+                <select id="filterCpu"></select>
+              </label>
+              <label>
+                RAM
+                <select id="filterRam"></select>
+              </label>
+            </div>
           </div>
 
-          <label>
-            Sistema Operativo
-            <select id="filterOs"></select>
-          </label>
-          <label>
-            Fabricante
-            <select id="filterFab"></select>
-          </label>
-          <label>
-            Categoría
-            <select id="filterCat"></select>
-          </label>
-          <label>
-            Pantalla
-            <select id="filterPan"></select>
-          </label>
-          <label>
-            CPU
-            <select id="filterCpu"></select>
-          </label>
-          <label>
-            RAM
-            <select id="filterRam"></select>
-          </label>
-          <label>
-            Almacenamiento
-            <select id="filterAlm"></select>
-          </label>
-
-          <div class="actions">
-            <button type="button" id="applyFilters">Aplicar filtros</button>
-            <button type="button" id="clearFilters" class="secondary">Limpiar filtros</button>
+          <!-- Fila 3: Almacenamiento y Botones -->
+          <div class="filter-row-bottom">
+            <label>
+              Almacenamiento
+              <select id="filterAlm"></select>
+            </label>
+            <div class="actions">
+              <button type="button" id="applyFilters">Aplicar filtros</button>
+              <button type="button" id="clearFilters" class="secondary">Limpiar filtros</button>
+            </div>
           </div>
         </form>
       </section>
