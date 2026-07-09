@@ -10,6 +10,19 @@
 <body>
   <div class="app-shell">
     <aside class="sidebar">
+      <section class="panel panel-info">
+        <div class="info-card">
+          <span>Total</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div class="info-card">
+          <span>Equipos únicos</span>
+          <strong id="uniqueModels">0</strong>
+        </div>
+      </section>
+    </aside>
+
+    <main class="dashboard-content">
       <section class="panel panel-filters">
         <h2>Filtros</h2>
         <form id="filtersForm" class="filters-form">
@@ -49,19 +62,6 @@
         </form>
       </section>
 
-      <section class="panel panel-info">
-        <div class="info-card">
-          <span>Total</span>
-          <strong id="totalCount">0</strong>
-        </div>
-        <div class="info-card">
-          <span>Equipos únicos</span>
-          <strong id="uniqueModels">0</strong>
-        </div>
-      </section>
-    </aside>
-
-    <main class="dashboard-content">
       <section class="charts-grid">
         <article class="chart-card small-card">
           <div class="card-title">Equipos por fabricante</div>
